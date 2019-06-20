@@ -4,12 +4,13 @@
     "description": "Syntax highlighting for Torque3D's TorqueScript",
     "version": "1.0.0",
     "engines": {
-        "vscode": "^1.35.0"
+        "vscode": "^0.10.5"
     },
+    "publisher": "zfbx",
     "author": {
         "name": "zfbx"
     },
-    "icon": "iamges/torque.png",
+    "icon": "images/torque.png",
     "categories": [
         "Programming Languages",
         "Snippets"
