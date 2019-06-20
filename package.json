@@ -1,0 +1,44 @@
+{
+    "name": "torquescript",
+    "displayName": "TorqueScript",
+    "description": "Syntax highlighting for Torque3D's TorqueScript",
+    "version": "1.0.0",
+    "engines": {
+        "vscode": "^1.35.0"
+    },
+    "author": {
+        "name": "zfbx"
+    },
+    "icon": "iamges/torque.png",
+    "categories": [
+        "Programming Languages",
+        "Snippets"
+    ],
+    "galleryBanner": {
+        "color": "#990000",
+        "theme": "dark"
+    },
+    "contributes": {
+        "languages": [{
+            "id": "torquescript",
+            "aliases": ["Torquescript", "torquescript", "TorqueScript"],
+            "extensions": [".cs",".gui",".mis"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "torquescript",
+            "scopeName": "source.torquescript",
+            "path": "./syntaxes/torquescript.tmLanguage.json"
+        }],
+        "snippets": [
+            {
+                "language": "torquescript",
+                "path": "./snippets/snippets.json"
+            }
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/zfbx/TorqueScript.git"
+    }
+}

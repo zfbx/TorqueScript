@@ -1,0 +1,95 @@
+{
+    "Function definition": {
+        "prefix": "fun",
+        "body": "function ${1:name}(${2:args})\n{\n\t$3\n}",
+        "description": "Create a Function"
+    },
+    "Method definition": {
+        "prefix": ":fun",
+        "body": "function ${1:scope}::${2:name}(${3:args})\n{\n\t$4\n}"
+    },
+    "if": {
+        "prefix": "if",
+        "body": "if (${1:1}) {\n\t$2\n}"
+    },
+    "if … else": {
+        "prefix": "ife",
+        "body": "if (${1:1}) {\n\t$2\n}\nelse {\n\t$3\n}"
+    },
+    "while": {
+        "prefix": "while",
+        "body": "while (${1:1}) {\n\t${2:break;}\n}"
+    },
+    "for": {
+        "prefix": "for",
+        "body": "for (${1:init}; ${2:test}; ${3:loop})\n{\n\t$4\n}"
+    },
+    "for %i++": {
+        "prefix": "ifor",
+        "body": "for (%i = 0; %i < ${1:10}; %i++) {\n\t${2:echo(%i);}\n}"
+    },
+    "switch": {
+        "prefix": "swi",
+        "body": "switch (${1:expr})\n{\n$2\n}"
+    },
+    "switch$": {
+        "prefix": "swis",
+        "body": "switch$ (${1:expr})\n{\n$2\n}"
+    },
+    "case": {
+        "prefix": "cas",
+        "body": "case ${1:value}:\n\t$2"
+    },
+    "default": {
+        "prefix": "def",
+        "body": "default:\n\t$1"
+    },
+    "New custom object": {
+        "prefix": "co",
+        "body": "new ScriptObject() {\n\tclass = \"$1\";$2\n};"
+    },
+    "New object": {
+        "prefix": "new",
+        "body": "new ${1:ScriptObject}(${2:name}) {\n\t$3\n};"
+    },
+    "Inherit object": {
+        "prefix": ":new",
+        "body": "new ${1:ScriptObject}(${2:name} : ${3:parent}) {\n\t$4\n};"
+    },
+    "New datablock": {
+        "prefix": "db",
+        "body": "datablock ${1:ClassName}Data(${2:name}) {\n\t$3\n};"
+    },
+    "Inherited datablock": {
+        "prefix": ":db",
+        "body": "datablock ${1:ClassName}Data(${2:name} : ${3:parent}) {\n\t$4\n};"
+    },
+    "Activated package": {
+        "prefix": "pac",
+        "body": "package ${1:name} {\n\t$2\n};\n\nactivatePackage(\"$1\");"
+    },
+    "Deactivated package": {
+        "prefix": "dpac",
+        "body": "package ${1:name} {\n\t$2\n};"
+    },
+    "Conditional package": {
+        "prefix": "cpac",
+        "body": "if (isPackage(\"${1:name}\")) {\n\tdeactivatePackage(\"$1\");\n}\n\npackage $1 {\n\t$2\n};\n\nactivatePackage(\"$1\");"
+    },
+    "Looping schedule function": {
+        "prefix": "sfun",
+        "body": "function ${1:name}(${2:args})\n{\n\tcancel(${3:schedule});\n\t${4:// ...}\n\t${5:schedule} = schedule($6, 0, $7);\n}"
+    },
+    "Parent call": {
+        "prefix": "par",
+        "body": "Parent::${1:method}(${2:args});"
+    },
+    "Return value": {
+        "prefix": "ret",
+        "body": "return ${1:expr};"
+    },
+    "Error and return": {
+        "prefix": "err",
+        "body": "error(\"ERROR: ${1:message}\");\nreturn$2;"
+    }
+}

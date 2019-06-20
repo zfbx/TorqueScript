@@ -1,0 +1,561 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "TorqueScript",
+	"patterns": [
+		{
+		  "comment": "Single line comment",
+		  "match": "\\/\\/.*",
+		  "name": "comment.line.double-slash.torque"
+		},
+		{
+		  "comment": "Global variable",
+		  "match": "\\$[a-zA-Z_][0-9a-zA-Z_]*(:+[0-9a-zA-Z_]+)*\\b",
+		  "name": "variable.other.global.torque"
+		},
+		{
+		  "comment": "Local variable",
+		  "match": "%[a-zA-Z_][0-9a-zA-Z_]*(:+[0-9a-zA-Z_]+)*\\b",
+		  "name": "variable.other.local.torque"
+		},
+		{
+		  "begin": "\"",
+		  "comment": "String",
+		  "end": "\"",
+		  "name": "string.double.torque",
+		  "patterns": [
+			{
+			  "include": "#escaped-char"
+			},
+			{
+			  "match": "\\\\.",
+			  "name": "constant.character.escape.torque"
+			}
+		  ]
+		},
+		{
+		  "begin": "'",
+		  "comment": "Tagged String",
+		  "end": "'",
+		  "name": "string.single.torque",
+		  "patterns": [
+			{
+			  "include": "#escaped-char"
+			},
+			{
+			  "match": "\\\\.",
+			  "name": "constant.character.escape.torque"
+			}
+		  ]
+		},
+		{
+		  "comment": "Control Structure",
+		  "match": "\\b(switch\\$)|\\b(break|case|continue|default|else|for|if|return|switch|while)\\b",
+		  "name": "keyword.control.torque"
+		},
+		{
+		  "match": "\\b(?i:parent(?=::))",
+		  "name": "keyword.other.parent.torque"
+		},
+		{
+		  "comment": "String Operator",
+		  "match": "@|SPC|TAB|NL",
+		  "name": "keyword.operator.string.torque"
+		},
+		{
+		  "comment": "Logical Operator",
+		  "match": "(!|&&|\\|\\|)",
+		  "name": "keyword.operator.logical.torque"
+		},
+		{
+		  "comment": "Compound Assignment Operator",
+		  "match": "(\\+|\\-|\\*|\\/|%|\\&|\\||\\^|<<|>>)=",
+		  "name": "keyword.operator.compound-assignment.torque"
+		},
+		{
+		  "comment": "Bitwise Operator",
+		  "match": "(\\~|\\&|\\||\\^|<<|>>)",
+		  "name": "keyword.operator.bitwise.torque"
+		},
+		{
+		  "comment": "Comparison Operator",
+		  "match": "(<|>|<=|>=|==|!=|\\$=|!\\$=)",
+		  "name": "keyword.operator.comparison.torque"
+		},
+		{
+		  "comment": "Arithmetic Operator",
+		  "match": "(\\-|\\+|\\*|\\/|%|\\+\\+|\\-\\-)",
+		  "name": "keyword.operator.arithmetic.torque"
+		},
+		{
+		  "comment": "Assignment Operator",
+		  "match": "=",
+		  "name": "keyword.operator.assignment.torque"
+		},
+		{
+		  "match": "::",
+		  "name": "keyword.operator.scope-resolution.torque"
+		},
+		{
+		  "captures": {
+			"1": {
+			  "name": "storage.type.function.torque"
+			},
+			"2": {
+			  "name": "entity.name.class.namespace.torque"
+			},
+			"3": {
+			  "name": "entity.name.function.torque"
+			}
+		  },
+		  "comment": "Function",
+		  "match": "(?:^\\s*)(function)\\s*(?:([a-zA-Z0-9_]+)::)?([a-zA-Z0-9_]+)\\s*\\(",
+		  "name": "meta.function.torque"
+		},
+		{
+		  "begin": "(?:^\\s*)(datablock)\\s*([a-zA-Z0-9_]+)\\s*\\(\\s*([a-zA-Z0-9_]+)?(?:\\s*\\:\\s*([a-zA-Z0-9_]+))?\\s*\\)",
+		  "captures": {
+			"1": {
+			  "name": "storage.type.datablock.torque"
+			},
+			"2": {
+			  "name": "entity.name.class.datablock.torque"
+			},
+			"3": {
+			  "name": "entity.name.datablock.torque"
+			},
+			"4": {
+			  "name": "entity.name.cloned.datablock.torque"
+			}
+		  },
+		  "comment": "DataBlock",
+		  "end": "\\{",
+		  "name": "meta.datablock.torque"
+		},
+		{
+		  "captures": {
+			"1": {
+			  "name": "storage.type.package.torque"
+			},
+			"2": {
+			  "name": "entity.name.package.torque"
+			}
+		  },
+		  "comment": "Package",
+		  "match": "(?:^\\s*)(package)\\s*([a-zA-Z0-9_]+)",
+		  "name": "meta.package.torque"
+		},
+		{
+		  "captures": {
+			"1": {
+			  "name": "keyword.operator.new.torque"
+			},
+			"2": {
+			  "name": "entity.name.class.object.torque"
+			},
+			"3": {
+			  "name": "entity.name.object.torque"
+			},
+			"4": {
+			  "name": "entity.name.cloned.object.torque"
+			}
+		  },
+		  "match": "(new)\\s+([a-zA-Z0-9_]+)\\s*\\(\\s*([a-zA-Z0-9_]+)?(?:\\s*\\:\\s*([a-zA-Z0-9_]+))?\\s*[,\\)]",
+		  "name": "meta.newobject.torque"
+		},
+		{
+		  "match": "\\bnew\\b",
+		  "name": "keyword.operator.new.torque"
+		},
+		{
+		  "match": "\\b(function|datablock|package)\\b",
+		  "name": "storage.type.torque"
+		},
+		{
+		  "comment": "Boolean Constant",
+		  "match": "TRUE|true|FALSE|false",
+		  "name": "constant.language.boolean.torque"
+		},
+		{
+		  "comment": "Hexadecimal Number",
+		  "match": "0x[0-9a-fA-F]+",
+		  "name": "constant.numeric.hexadecimal.torque"
+		},
+		{
+		  "comment": "Numeric Constant",
+		  "match": "\\b-?\\d+(\\.\\d+)?([Ee]-?\\d+)?\\b",
+		  "name": "constant.numeric.torque"
+		},
+		{
+		  "match": "\\b(?i:bind(Cmd)?|get(Binding|Command|DeadZone|Scale)|isInverted|p(op|ush)|save|unbind)\\b",
+		  "name": "support.function.action-map.torque"
+		},
+		{
+		  "match": "\\b(?i:getAddress|(get|set)(FreeLook|Move|Trigger))\\b",
+		  "name": "support.function.ai-connection.torque"
+		},
+		{
+		  "match": "\\b(?i:setPowerAudioProfiles)\\b",
+		  "name": "support.function.ambient-audio-manager.torque"
+		},
+		{
+		  "match": "\\b(?i:ai(AddPlayer|Connect)|clearAim|(get|set)(Aim(Location|Object)|MoveDestination)|setMoveSpeed|stop)\\b",
+		  "name": "support.function.ai-player.torque"
+		},
+		{
+		  "match": "\\b(?i:(get|set)MoveDestination|setMove(Speed|Tolerance)|stop)\\b",
+		  "name": "support.function.ai-wheeled-vehicle.torque"
+		},
+		{
+		  "match": "\\b(?i:getPosition|set(FlyMode|OrbitMode))\\b",
+		  "name": "support.function.camera.torque"
+		},
+		{
+		  "match": "\\b(?i:init)\\b",
+		  "name": "support.function.debris.torque"
+		},
+		{
+		  "match": "\\b(?i:setBookmark|gotoBookmark)\\b",
+		  "name": "support.function.edit-manager.torque"
+		},
+		{
+		  "match": "\\b(?i:close|isEOF|open(ForAppend|ForRead|ForWrite)|(read|write)Line)\\b",
+		  "name": "support.function.file-object.torque"
+		},
+		{
+		  "match": "\\b(?i:startFoliageReplication)\\b",
+		  "name": "support.function.fx-foliage-replicator.torque"
+		},
+		{
+		  "match": "\\b(?i:(attachTo|detachFrom)Object|reset|setEnable)\\b",
+		  "name": "support.function.fx-light.torque"
+		},
+		{
+		  "match": "\\b(?i:startClientReplication)\\b",
+		  "name": "support.function.fx-shape-replicator.torque"
+		},
+		{
+		  "match": "\\b(?i:reset|set((Azimuth|Blue|Brightness|Elevation|Green|Red|Rotation|SingleColour|Size)Keys|(Azimuth|Brightness|Colour|Elevation|Fade|Rotation|Size)Time|BlendMode|Enable|Flare(Bitmaps|Brightness|Colour|Size|TP)|LinkFlareSize|(Lerp|Max|Min|Use)(Azimuth|Brightness|Colour|Elevation|Rotation|Size)|Sun(Azimuth|Elevation)))\\b",
+		  "name": "support.function.fx-sun-light.torque"
+		},
+		{
+		  "match": "\\b(?i:(get|set)DataBlock)\\b",
+		  "name": "support.function.game-base.torque"
+		},
+		{
+		  "match": "\\b(?i:activateGhosting|chaseCam|clearCameraObject|delete|get((Camera|Control)Object|ControlCameraFov|ServerConnection)|is(AIControlled|Demo(Playing|Recording)|FirstPerson)|listClassIDs|play(2D|3D|Demo)|resetGhosting|set(BlackOut|CameraObject|ConnectArgs|Control(CameraFov|Object)|FirstPerson|JoinPassword|MissionCRC)|(start|stop)Recording|transmitDataBlocks)\\b",
+		  "name": "support.function.game-connection.torque"
+		},
+		{
+		  "match": "\\b(?i:(activate|deactivate)Light|echoTriggerableLights|getNumDetailLevels|magicButton|set(AlarmMode|DetailLevel|SkinBase))\\b",
+		  "name": "support.function.interior-instance.torque"
+		},
+		{
+		  "match": "\\b(?i:getLastSticky(Normal|Pos)|is(Rotating|Static)|setCollisionTimeout)\\b",
+		  "name": "support.function.item.torque"
+		},
+		{
+		  "match": "\\b(?i:strike(Object|RandomPoint)|warningFlashes)\\b",
+		  "name": "support.function.lightning.torque"
+		},
+		{
+		  "match": "\\b(?i:checkMaxRate|clear(Server)?Paths|connect|connectLocal|get(Address|Ghost(ID|sActive)|PacketLoss|Ping)|resolve(GhostID|ObjectFromGhostIndex)|setSimulatedNetParams|transmitPaths|getPathID)\\b",
+		  "name": "support.function.mission-area.torque"
+		},
+		{
+		  "match": "\\b(?i:clearScopeToClient|getGhostId|scopeToClient|setScopeAlways)\\b",
+		  "name": "support.function.net-object.torque"
+		},
+		{
+		  "match": "\\b(?i:popFront|push(Back|Front)|reset|set(Position|State|Target))\\b",
+		  "name": "support.function.path-camera.torque"
+		},
+		{
+		  "match": "\\b(?i:activate|deactivate)\\b",
+		  "name": "support.function.physical-zone.torque"
+		},
+		{
+		  "match": "\\b(?i:checkDismountPoint|(clear|set)ControlObject|get(ControllingObject|DamageLocation|State)|setActionThread)\\b",
+		  "name": "support.function.player.torque"
+		},
+		{
+		  "match": "\\b(?i:modifyStorm|setPercentage)\\b",
+		  "name": "support.function.precipitation.torque"
+		},
+		{
+		  "match": "\\b(?i:get(ForwardVector|ObjectBox|Position|Scale|Transform|WorldBox|WorldBoxCenter)|set(Scale|Transform))\\b",
+		  "name": "support.function.scene-object.torque"
+		},
+		{
+		  "match": "\\b(?i:apply(Damage|Impulse|Repair)|canCloak|get(AIRepairPoint|CameraFov|Controlling(Client|Object)|Damage(Flash|Level|Percent|State)|Energy(Level|Percent)|Eye(Point|Transform|Vector)|Image(Ammo|Loaded|SkinTag|State|Trigger)|Mount(ed(Image|Object|Object(Count|Node))|NodeObject|Slot)|Muzzle(Point|Vector)|ObjectMount|PendingImage|(Recharge|Repair)Rate|(Shape|Skin)Name|SlotTransform|Velocity|WhiteOut)|is(Cloaked|Destroyed|Disabled|Enabled|Hidden|Image(Firing|Mounted)|Mounted)|mount(Image|Object)|pauseThread|play(Audio|Thread)|set(CameraFov|Cloaked|Damage(Flash|Level|State|Vector)|EnergyLevel|Hidden|Image(Ammo|Loaded|Trigger)|InvincibleMode|(Recharge|Repair)Rate|(Shape|Skin)Name|ThreadDir|Velocity|WhiteOut|ShadowDetailLevel)|startFade|stopAudio|stopThread|unmount|unmount(Image|Object))\\b",
+		  "name": "support.function.shape-base.torque"
+		},
+		{
+		  "match": "\\b(?i:checkDeployPos|getDeployTransform)\\b",
+		  "name": "support.function.shape-base-data.torque"
+		},
+		{
+		  "match": "\\b(?i:findObjectByInternalName)\\b",
+		  "name": "support.function.sim-group.torque"
+		},
+		{
+		  "match": "\\b(?i:delete|dump|get(ClassName|Group|Id|(Internal)?Name|Type)|isMethod|save|schedule|set(Internal)?Name)\\b",
+		  "name": "support.function.sim-object.torque"
+		},
+		{
+		  "match": "\\b(?i:add|bringToFront|clear|get(Count|Object)|isMember|listObjects|pushToBack|remove)\\b",
+		  "name": "support.function.sim-set.torque"
+		},
+		{
+		  "match": "\\b(?i:(get|set)WindVelocity|realFog|storm(Clouds|Fog)|storm(Clouds|Fog)Show)\\b",
+		  "name": "support.function.sky.torque"
+		},
+		{
+		  "match": "\\b(?i:(get|set)PoweredState)\\b",
+		  "name": "support.function.static-shape.torque"
+		},
+		{
+		  "match": "\\b(?i:connect|disconnect|listen|send)\\b",
+		  "name": "support.function.tcp-object.torque"
+		},
+		{
+		  "match": "\\b(?i:(get|set)(HeightfieldScript|TextureScript)|save)\\b",
+		  "name": "support.function.terrain-block.torque"
+		},
+		{
+		  "match": "\\b(?i:get(NumObjects|Object))\\b",
+		  "name": "support.function.trigger.torque"
+		},
+		{
+		  "match": "\\b(?i:getWheelCount|setWheel(Powered|Spring|Steering|Tire))\\b",
+		  "name": "support.function.wheeled-vehicle.torque"
+		},
+		{
+		  "match": "\\b(?i:alx(CreateSource|Get(ChannelVolume|Listenerf|Source(f|i|3f)|Stream(Duration|Position)|WaveLen)|Listener(3)?f|IsPlaying|Play|SetChannelVolume|Source(f|i|3f)|Stop|StopAll)|al(Listener3f|Get(Listener(i|3f)|String|WaveLen))|OpenAL(InitDriver|ShutdownDriver|RegisterExtensions))\\b",
+		  "name": "support.function.openal.torque"
+		},
+		{
+		  "match": "\\b(?i:debug|dbg(IsConnected|Disconnect)|dumpConsole(Classes|Functions)|setEchoFileLoads)\\b",
+		  "name": "support.function.debugging.torque"
+		},
+		{
+		  "match": "\\b(?i:setInteriorRenderMode)\\b",
+		  "name": "support.function.interiors.torque"
+		},
+		{
+		  "match": "\\b(?i:(play|save)Journal)\\b",
+		  "name": "support.function.journaling.torque"
+		},
+		{
+		  "match": "\\b(?i:inputLog|setLogMode)\\b",
+		  "name": "support.function.logging.torque"
+		},
+		{
+		  "match": "\\b(?i:dumpUnflaggedAllocs|flagCurrentAllocs|freeMemoryDump|getMaxFrameAllocation)\\b",
+		  "name": "support.function.memory.torque"
+		},
+		{
+		  "match": "\\b(?i:GLEnable(Logging|Metrics)|metrics)\\b",
+		  "name": "support.function.metrics.torque"
+		},
+		{
+		  "match": "\\b(?i:dbgSetParameters|dNetSetLogging)\\b",
+		  "name": "support.function.networking.torque"
+		},
+		{
+		  "match": "\\b(?i:profiler(Dump|DumpToFile|Enable|MarkerEnable|Reset))\\b",
+		  "name": "support.function.profiling.torque"
+		},
+		{
+		  "match": "\\b(?i:backtrace|trace)\\b",
+		  "name": "support.function.tracing.torque"
+		},
+		{
+		  "match": "\\b(?i:addBadWord|containsBadWords|filterString|str(i?cmp|(lw|up)r|len|replace|chr|pos|str)|(get|remove|set)(Field|Record)|(getField|getRecord)(Count|s)|getSubStr|strip(Chars|ColorCodes|MLControlChars|TrailingSpaces)|(l|r)?trim|nextToken|(first|get|remove|set)Word|getWordCount|(get|rest)Words|(add|build|get|remove)TaggedString|detag|dumpNetStringTable|getTag)\\b",
+		  "name": "support.function.strings.torque"
+		},
+		{
+		  "match": "\\b(?i:gotoWebPage|setNetPort|telnetSetParameters)\\b",
+		  "name": "support.function.telnet.torque"
+		},
+		{
+		  "match": "\\b(?i:commandTo(Client|Server)|msg)\\b",
+		  "name": "support.function.client-server.torque"
+		},
+		{
+		  "match": "\\b(?i:allowConnections|(stop|cancel)ServerQuery|getServerCount|query(LANServers|(Master|Single)Server)|setServerInfo|(start|stop)Heartbeat)\\b",
+		  "name": "support.function.game-server.torque"
+		},
+		{
+		  "match": "\\b(?i:call|cls|collapseEscape|compile|deleteVariables|echo|enableWinConsole|error|eval|exec|expandEscape|export|quit(WithErrorMessage)?|warn|isFunction)\\b",
+		  "name": "support.function.console.torque"
+		},
+		{
+		  "match": "\\b(?i:(de)?activate(DirectInput|Keyboard)|(dis|en)able(Joystick|Mouse)|(echo|toggle)InputState|getJoystickAxes|isJoystickDetected|lockMouse)\\b",
+		  "name": "support.function.device-io.torque"
+		},
+		{
+		  "match": "\\b(?i:createPath|expandFileName|file(Base|Ext|Name|Path|Delete|Size)|find(FirstFile(MultiExpr)?|NextFile(MultiExpr)?)|get(WorkingDirectory|DirectoryList|ExecutableName|File(Count(MultiExpr)?|CRC))|is(File|WriteableFileName)|pathCopy|(save|load)ChunkFile)\\b",
+		  "name": "support.function.file-io.torque"
+		},
+		{
+		  "match": "\\b(?i:populate(All)?FontCache(String|Range)|dumpFontCacheStatus|writeFontCache|(export|import|duplicate)CachedFont)\\b",
+		  "name": "support.function.font-cache.torque"
+		},
+		{
+		  "match": "\\b(?i:(set|increase|decrease)FSAA)\\b",
+		  "name": "support.function.mac-fsaa.torque"
+		},
+		{
+		  "match": "\\b(?i:(de)?activatePackage|isPackage)\\b",
+		  "name": "support.function.packages.torque"
+		},
+		{
+		  "match": "\\b(?i:isObject|nameToID|strToPlayerName|getVariable|restartInstance)\\b",
+		  "name": "support.function.objects.torque"
+		},
+		{
+		  "match": "\\b(?i:cancel|get(EventTimeLeft|ScheduleDuration|TimeSinceStart)|isEventPending|schedule)\\b",
+		  "name": "support.function.event-schedulling.torque"
+		},
+		{
+		  "match": "\\b(?i:deleteDataBlocks)\\b",
+		  "name": "support.function.datablocks.torque"
+		},
+		{
+		  "match": "\\b(?i:addMaterialMapping|clearTextureHolds|dumpTextureStats|flushTextureCache|get(DesktopResolution|DisplayDeviceList|Res(olutionList)?|VideoDriverInfo)|is(DeviceFullScreenOnly|FullScreen)|(next|prev)Resolution|png2jpg|(panorama)?screenShot|set(DefaultFov|DisplayDevice|Fov|OpenGL(Anisotropy|(Interior|Sky)?MipReduction|TextureCompressionHint)|Res|ScreenMode|VerticalSync)|switchBitDepth|toggleFullScreen|videoSetGammaCorrection|minimizeWindow|dumpDisplayIDs|test(WindowLevels|SetWindowTitle)|invertScreenColor|testAsserts)\\b",
+		  "name": "support.function.video-texturing.torque"
+		},
+		{
+		  "match": "\\b(?i:calcExplosionCoverage|get(ControlObjectAltitude|ControlObjectSpeed|Clipboard|ModPaths|TerrainHeight)|isPointInside|pathOnMissionLoadDone|makeTestTerrain|dPathCopy|testAlert|set(ModPaths|Clipboard|ZoomSpeed)|_sg(Create|Drop)Decal|sgLightingModel(Count|Name))\\b",
+		  "name": "support.function.special.torque"
+		},
+		{
+		  "match": "\\b(?i:redbook(Open|Close|Play|Stop|Get(TrackCount|Volume|Device(Count|Name)|LastError)|SetVolume))\\b",
+		  "name": "support.function.redbook-audio.torque"
+		},
+		{
+		  "match": "\\b(?i:dumpResourceStats|purgeResources)\\b",
+		  "name": "support.function.resource-manager.torque"
+		},
+		{
+		  "match": "\\b(?i:lightScene|resetLighting)\\b",
+		  "name": "support.function.scene.torque"
+		},
+		{
+		  "match": "\\b(?i:container(BoxEmpty|Find(First|Next)|RayCast|Search(Curr(Radius)?Dist|Next))|initContainerRadiusSearch)\\b",
+		  "name": "support.function.containers-raycast.torque"
+		},
+		{
+		  "match": "\\b(?i:snapToggle)\\b",
+		  "name": "support.function.editors.torque"
+		},
+		{
+		  "match": "\\b(?i:get(BuildString|CompileTimeString|Version(Number|String))|isDebugBuild)\\b",
+		  "name": "support.function.build.torque"
+		},
+		{
+		  "match": "\\b(?i:get(Real|Sim)Time)\\b",
+		  "name": "support.function.time.torque"
+		},
+		{
+		  "match": "\\b(?i:create(Effect)?Canvas)\\b",
+		  "name": "support.function.guis.torque"
+		},
+		{
+		  "match": "\\b(?i:get(BoxCenter|Random|RandomSeed)|m(Abs|Acos|Asin|Atan|Ceil|Cos|DegToRad|FloatLength|Floor|Log|Pow|RadToDeg|Sin|Solve(Cubic|Quadratic|Quartic)|Sqrt|Tan)|mathInit|matrix(Create(FromEuler)?|Mul(Point|tiply|Vector))|setRandomSeed|vector(Add|Cross|Dist|Dot|Len|Normalize|OrthoBasis|Scale|Sub))\\b",
+		  "name": "support.function.math.torque"
+		},
+		{
+		  "match": "\\b(?i:set(Bitmap|Value))\\b",
+		  "name": "support.function.gui-bitmap-ctrl.torque"
+		},
+		{
+		  "match": "\\b(?i:(get|set)Text|performClick)\\b",
+		  "name": "support.function.gui-button-base-ctrl.torque"
+		},
+		{
+		  "match": "\\b(?i:cursor(On|Off)|get(Content|CursorPos)|hideCursor|isCursorOn|pop(Dialog|Layer)|pushDialog|renderFront|repaint|reset|set(Content|Cursor(Pos)?)|showCursor|setCanvasTitle|(get|set)CoreLangTable)\\b",
+		  "name": "support.function.gui-canvas.torque"
+		},
+		{
+		  "match": "\\b(?i:get((Min)?Extent|Position|Value)|is(Active|Awake|Visible)|makeFirstResponder|resize|set(Active|Profile|Value|Visible))\\b",
+		  "name": "support.function.gui-control.torque"
+		},
+		{
+		  "match": "\\b(?i:(get|set)Value|identity)\\b",
+		  "name": "support.function.gui-filter-ctrl.torque"
+		},
+		{
+		  "match": "\\b(?i:addMenu(Item)?|clearMenu(s|Items)|removeMenu(Item)?|setMenuItem(Bitmap|Checked|Enable|Text|Visible)|setMenu(Text|Visible))\\b",
+		  "name": "support.function.gui-menu-bar.torque"
+		},
+		{
+		  "match": "\\b(?i:(at|de)tach)\\b",
+		  "name": "support.function.gui-message-vector-ctrl.torque"
+		},
+		{
+		  "match": "\\b(?i:clear|deleteLine|dump|getLine(IndexByTag|Tag|Text|TextByTag)|getNumLines|insertLine|(pop|push)(Back|Front)Line)\\b",
+		  "name": "support.function.message-vector.torque"
+		},
+		{
+		  "match": "\\b(?i:addText|forceReflow|getText|scrollTo(Tag|Top)|set(Alpha|CursorPosition|Text))\\b",
+		  "name": "support.function.gui-ml-text-ctrl.torque"
+		},
+		{
+		  "match": "\\b(?i:add(Scheme)?|clear|findText|force(Close|OnAction)|get(Selected|Text(ByID)?|)|replaceText|set(EnumContent|Selected|Text)|size|sort)\\b",
+		  "name": "support.function.gui-popup-menu-ctrl.torque"
+		},
+		{
+		  "match": "\\b(?i:scrollTo(Bottom|Top))\\b",
+		  "name": "support.function.gui-scroll-ctrl.torque"
+		},
+		{
+		  "match": "\\b(?i:getValue)\\b",
+		  "name": "support.function.gui-slider-ctrl.torque"
+		},
+		{
+		  "match": "\\b(?i:setText)\\b",
+		  "name": "support.function.gui-text-ctrl.torque"
+		},
+		{
+		  "match": "\\b(?i:(get|set)CursorPos)\\b",
+		  "name": "support.function.gui-text-edit-ctrl.torque"
+		},
+		{
+		  "match": "\\b(?i:addRow|clear(Selection)?|findTextIndex|get(Row(ID|NumByID|Text|TextByID)|SelectedID)|isRowActive|removeRow(ByID)?|rowCount|scrollVisible|set(Row(Active|ByID)|Selected(Row|ByID))|sort(Numerical)?)\\b",
+		  "name": "support.function.gui-text-list-ctrl.torque"
+		},
+		{
+		  "match": "\\b(?i:(add|remove)(Column|Row)|frame(Border|MinExtent|Movable)|get(Column|Row)(Count|Offset)|set(Column|Row)Offset)\\b",
+		  "name": "support.function.gui-frameset-ctrl.torque"
+		},
+		{
+		  "match": "\\b(?i:on(Action|Add|Cancel|Collision|Damage|DeleteKey|Destroyed|(En|Dis)abled|EndSequence|(Enter|Leave)(Liquid|MissionArea|Trigger)|Exit|Explode|Impact|InputEvent|Menu(Item)?Select|Mount|MoveStuck|Mouse((Right)?Down|(Right)?Dragged|Enter|Leave|Move|(Right)?Up)|NewDataBlock|Node|ReachDestination|Remove|Resize|Select|Sleep|StickyCollision|TabComplete|Target(Enter|Exit)LOS|(Tick)?Trigger|TriggerTick|Unmount|URL|Wake)|animationDone|applyDamage|click|create|doDismount|urlClickCallback)\\b",
+		  "name": "support.other.callback.torque"
+		}
+	  ],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.torquescript",
+				"match": "\\b(if|while|for|return)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.torquescript",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.torquescript",
+					"match": "\\\\."
+				}
+			]
+		},
+		"escaped-char": {
+			"match": "\\\\(n|r|t|\\\\|c\\d|cr|cp|co|x[0-9a-fA-F]{2})",
+			"name": "constant.character.escape.torque"
+		}
+	},
+	"scopeName": "source.torquescript"
+}
