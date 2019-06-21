@@ -21,3 +21,7 @@ Originally [converted](http://atom.io/docs/latest-converting-a-text-mate-bundle)
 ### 1.0.0
 
 Initial release of Torquescript Syntax Highlighting for VSCode
+
+### 1.0.1
+
+Added `or` to the logical operators
