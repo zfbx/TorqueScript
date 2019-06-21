@@ -2,7 +2,7 @@
     "name": "torquescript",
     "displayName": "TorqueScript",
     "description": "Syntax highlighting for Torque3D's TorqueScript",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "engines": {
         "vscode": "^0.10.5"
     },
@@ -20,17 +20,29 @@
         "theme": "dark"
     },
     "contributes": {
-        "languages": [{
-            "id": "torquescript",
-            "aliases": ["Torquescript", "torquescript", "TorqueScript"],
-            "extensions": [".cs",".gui",".mis"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "torquescript",
-            "scopeName": "source.torquescript",
-            "path": "./syntaxes/torquescript.tmLanguage.json"
-        }],
+        "languages": [
+            {
+                "id": "torquescript",
+                "aliases": [
+                    "Torquescript",
+                    "torquescript",
+                    "TorqueScript"
+                ],
+                "extensions": [
+                    ".cs",
+                    ".gui",
+                    ".mis"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "torquescript",
+                "scopeName": "source.torquescript",
+                "path": "./syntaxes/torquescript.tmLanguage.json"
+            }
+        ],
         "snippets": [
             {
                 "language": "torquescript",
