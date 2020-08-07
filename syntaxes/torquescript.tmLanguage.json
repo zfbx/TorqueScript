@@ -2,6 +2,30 @@
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "TorqueScript",
 	"patterns": [
+		{	
+		"captures": {
+			"1": {
+			"name": "meta.toc-list.banner.block.torque"
+			}
+		},
+		"match": "^/\\* =(\\s*.*?)\\s*= \\*/$\\n?",
+		"name": "comment.block.torque"
+		},
+		{
+		"begin": "/\\*",
+		"beginCaptures": {
+			"0": {
+			"name": "punctuation.definition.comment.begin.torque"
+			}
+		},
+		"end": "\\*/",
+		"endCaptures": {
+			"0": {
+			"name": "punctuation.definition.comment.end.torque"
+			}
+		},
+		"name": "comment.block.torque"
+		},
 		{
 		  "comment": "Single line comment",
 		  "match": "\\/\\/.*",
