@@ -2,7 +2,7 @@
     "name": "torquescript",
     "displayName": "TorqueScript",
     "description": "Syntax highlighting for Torque3D's TorqueScript",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "engines": {
         "vscode": "^0.10.5"
     },
@@ -16,8 +16,8 @@
         "Snippets"
     ],
     "galleryBanner": {
-        "color": "#990000",
-        "theme": "dark"
+        "color": "#FFFFFF",
+        "theme": "light"
     },
     "contributes": {
         "languages": [
