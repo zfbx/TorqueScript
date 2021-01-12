@@ -6,11 +6,10 @@ Originally [converted](http://atom.io/docs/latest-converting-a-text-mate-bundle)
 
 ## Features
 
-* Adds syntax highlighting for .cs files (TorqueScript)
+* Adds syntax highlighting for .cs and .tscript files (TorqueScript)
 * Adds syntax highlighting for .gui files (Torque3D UI)
 * Adds syntax highlighting for Torque's .mis files (Torque3D Mission)
 * Adds common snippets for creating functions, if, while, for, switch, case statements and objects
-
 
 ## Extension Settings
 
@@ -30,3 +29,7 @@ Added `or` to the logical operators
 
 Added .tscript to extentions for the 4.0 update
 Fixed spacing on `or` logical operator
+
+### 1.0.3
+
+Add Block comments - BloodKnight

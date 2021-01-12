@@ -13,3 +13,7 @@
 - .tscript file extention
 ### Changed
 - logical operator `or` requires spaces around it now
+
+## 1.0.3
+### Added
+- Add block comments
