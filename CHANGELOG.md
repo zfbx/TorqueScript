@@ -7,3 +7,9 @@
 ## 1.0.1
 ### Added
 - logical color for `or` operator
+
+## 1.0.2
+### Added
+- .tscript file extention
+### Changed
+- logical operator `or` requires spaces around it now

@@ -25,3 +25,8 @@ Initial release of Torquescript Syntax Highlighting for VSCode
 ### 1.0.1
 
 Added `or` to the logical operators
+
+### 1.0.2
+
+Added .tscript to extentions for the 4.0 update
+Fixed spacing on `or` logical operator

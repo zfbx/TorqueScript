@@ -63,22 +63,22 @@
 		},
 		{
 		  "comment": "Logical Operator",
-		  "match": "(!|&&|\\|\\|or)",
+		  "match": "(!|&&|\\|\\| or )",
 		  "name": "keyword.operator.logical.torque"
 		},
 		{
 		  "comment": "Compound Assignment Operator",
-		  "match": "(\\+|\\-|\\*|\\/|%|or|\\&|\\||\\^|<<|>>)=",
+		  "match": "(\\+|\\-|\\*|\\/|%| or |\\&|\\||\\^|<<|>>)=",
 		  "name": "keyword.operator.compound-assignment.torque"
 		},
 		{
 		  "comment": "Bitwise Operator",
-		  "match": "(\\~|\\&|\\||\\^|<<|>>|or)",
+		  "match": "(\\~|\\&|\\||\\^|<<|>>| or )",
 		  "name": "keyword.operator.bitwise.torque"
 		},
 		{
 		  "comment": "Comparison Operator",
-		  "match": "(<|>|<=|>=|==|or|!=|\\$=|!\\$=)",
+		  "match": "(<|>|<=|>=|==| or |!=|\\$=|!\\$=)",
 		  "name": "keyword.operator.comparison.torque"
 		},
 		{

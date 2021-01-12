@@ -31,7 +31,8 @@
                 "extensions": [
                     ".cs",
                     ".gui",
-                    ".mis"
+                    ".mis",
+                    ".tscript"
                 ],
                 "configuration": "./language-configuration.json"
             }
