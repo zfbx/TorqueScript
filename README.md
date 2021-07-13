@@ -15,7 +15,7 @@ Originally [converted](http://atom.io/docs/latest-converting-a-text-mate-bundle)
 
 ## Known Issues
 
-## Release Notes
+## Change Log / Release Notes
 
 ### 1.0.0
 

@@ -6,10 +6,13 @@
     "engines": {
         "vscode": "^0.10.5"
     },
-    "publisher": "zfbx",
-    "author": {
-        "name": "zfbx"
-    },
+    "publisher": "Torque3D",
+    "contributors": [
+        {
+            "name": "zfbx",
+            "url": "https://github.com/zfbx"
+        }
+    ],
     "icon": "images/torque.png",
     "categories": [
         "Programming Languages",
