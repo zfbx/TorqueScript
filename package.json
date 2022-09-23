@@ -32,10 +32,9 @@
                     "TorqueScript"
                 ],
                 "extensions": [
-                    ".cs",
+                    ".tscript",
                     ".gui",
-                    ".mis",
-                    ".tscript"
+                    ".mis"
                 ],
                 "configuration": "./language-configuration.json"
             }
